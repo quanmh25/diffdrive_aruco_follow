@@ -1,1 +1,0 @@
-/home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/src/follower_control/launch/run.launch.py

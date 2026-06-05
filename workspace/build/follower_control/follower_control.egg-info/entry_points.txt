@@ -1,3 +1,0 @@
-[console_scripts]
-follower_control_node = follower_control.follower_control_node:main
-leader_control_node = follower_control.leader_control_node:main

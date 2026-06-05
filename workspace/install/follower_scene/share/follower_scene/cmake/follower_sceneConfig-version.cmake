@@ -1,1 +1,0 @@
-/home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/build/follower_scene/ament_cmake_core/follower_sceneConfig-version.cmake
