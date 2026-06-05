@@ -1,0 +1,19 @@
+digraph G {
+"follower/base_link" -> "follower/wheel_left"[label=" Broadcaster: default_authority\nAverage rate: 16.876\nBuffer length: 4.859\nMost recent transform: 262.159\nOldest transform: 257.3\n"];
+"follower/odom" -> "follower/base_link"[label=" Broadcaster: default_authority\nAverage rate: 50.259\nBuffer length: 3.86\nMost recent transform: 262.18\nOldest transform: 258.32\n"];
+"follower/base_link" -> "follower/wheel_right"[label=" Broadcaster: default_authority\nAverage rate: 16.876\nBuffer length: 4.859\nMost recent transform: 262.159\nOldest transform: 257.3\n"];
+"world" -> "follower/odom"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"world" -> "leader/odom"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"follower/base_link" -> "follower/camera_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"follower/base_link" -> "follower/caster_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"follower/base_link" -> "follower/lidar_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"leader/base_link" -> "leader/wheel_left"[label=" Broadcaster: default_authority\nAverage rate: 16.872\nBuffer length: 4.86\nMost recent transform: 262.14\nOldest transform: 257.28\n"];
+"leader/odom" -> "leader/base_link"[label=" Broadcaster: default_authority\nAverage rate: 50.259\nBuffer length: 3.86\nMost recent transform: 262.18\nOldest transform: 258.32\n"];
+"leader/base_link" -> "leader/wheel_right"[label=" Broadcaster: default_authority\nAverage rate: 16.872\nBuffer length: 4.86\nMost recent transform: 262.14\nOldest transform: 257.28\n"];
+"leader/base_link" -> "leader/aruco_board_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"leader/base_link" -> "leader/caster_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1780425418.0618968"[ shape=plaintext ] ;
+}->"world";
+}

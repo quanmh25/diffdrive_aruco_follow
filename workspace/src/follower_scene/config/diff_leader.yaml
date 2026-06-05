@@ -1,0 +1,42 @@
+leader/controller_manager:
+  ros__parameters:
+    update_rate: 50
+    use_sim_time: true
+    diff_drive_controller:
+      type: diff_drive_controller/DiffDriveController
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+# THÊM BLOCK NÀY ĐỂ HIỆN BÁNH XE
+leader/joint_state_broadcaster:
+  ros__parameters:
+    use_sim_time: true
+
+leader/diff_drive_controller:
+  ros__parameters:
+    use_sim_time: true 
+    left_wheel_names: ["wheel_left_joint"]
+    right_wheel_names: ["wheel_right_joint"]
+    wheel_separation: 0.65
+    wheel_radius: 0.1
+    
+    # SỬA THÀNH FALSE ĐỂ TRÁNH LỖI NaN
+    use_stamped_vel: true   # for using TwistStamped
+    cmd_vel_timeout: 2.0
+    publish_limited_velocity: true
+    
+    # diff_drive_controller tự thêm namespace leader/ vào TF.
+    base_frame_id: base_link
+    odom_frame_id: odom
+    enable_odom_tf: true
+
+    linear.x.has_velocity_limits: true
+    linear.x.has_acceleration_limits: true
+    linear.x.max_velocity: 0.5
+    linear.x.min_velocity: -0.5
+    linear.x.max_acceleration: 1.0
+    angular.z.has_velocity_limits: true
+    angular.z.has_acceleration_limits: true
+    angular.z.max_velocity: 1.0
+    angular.z.min_velocity: -1.0
+    angular.z.max_acceleration: 1.0

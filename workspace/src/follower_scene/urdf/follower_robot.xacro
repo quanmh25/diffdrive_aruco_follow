@@ -1,0 +1,248 @@
+<?xml version='1.0'?>
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:arg name="namespace" default="follower"/>
+
+    <xacro:include filename="materials.xacro" />
+    <xacro:include filename="wheel.xacro" />
+    <xacro:include filename="inertial.xacro" />
+
+    <ros2_control name="GazeboSimSystem" type="system">
+        <hardware>
+            <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+        </hardware>
+        <joint name="wheel_left_joint">
+            <command_interface name="velocity"/>
+            <state_interface name="position"/>
+            <state_interface name="velocity">
+                <param name="initial_value">0.0</param>
+            </state_interface>
+        </joint>
+        <joint name="wheel_right_joint">
+            <command_interface name="velocity"/>
+            <state_interface name="position"/>
+            <state_interface name="velocity">
+                <param name="initial_value">0.0</param>
+            </state_interface>
+        </joint>
+        <joint name="caster_roll_joint">
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <joint name="caster_pitch_joint">
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+    </ros2_control>
+
+    <gazebo>
+        <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+            <parameters>$(find follower_scene)/config/diff_$(arg namespace).yaml</parameters>
+            <ros>
+                <namespace>$(arg namespace)</namespace>
+                <remapping>~/robot_description:=/$(arg namespace)/robot_description</remapping>
+                <remapping>tf:=/tf</remapping>
+                <remapping>tf_static:=/tf_static</remapping>
+            </ros>
+        </plugin>
+    </gazebo>  
+
+    <link name='base_link'>
+        <origin xyz="0.0 0.0 0.1" rpy="0.0 0 0.0"/>
+        <visual name='base_visual'>
+            <origin xyz="0.0 0.0 0.2" rpy="0.0 0.0 0.0"/>
+            <geometry><box size="0.6 0.6 0.2"/></geometry>
+            <material name="green"/>
+        </visual>
+        <xacro:inertial_box mass="1" x="0.6" y="0.6" z="0.2">
+            <origin xyz="0 0 0.2" rpy="0 0 0"/>
+        </xacro:inertial_box>
+        <collision>
+            <origin xyz="0 0 0.2" rpy="0 0 0"/>
+            <geometry><box size="0.6 0.6 0.2"/></geometry>
+        </collision>
+    </link>
+
+    <link name="caster_link">
+        <visual name="caster_visual">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry><sphere radius="0.1"/></geometry>
+            <material name="green"/>
+        </visual>
+        <collision name="caster_collision">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry><sphere radius="0.1"/></geometry>
+        </collision>
+        <xacro:inertial_sphere mass="0.05" radius="0.1">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_sphere>
+    </link>
+
+    <link name="caster_roll_link">
+        <inertial>
+            <mass value="0.001"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+        </inertial>
+    </link>
+
+    <joint name="caster_roll_joint" type="continuous">
+        <origin xyz="-0.2 0 0.1" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="caster_roll_link"/>
+        <axis xyz="1 0 0"/>
+        <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+
+    <joint name="caster_pitch_joint" type="continuous">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="caster_roll_link"/>
+        <child link="caster_link"/>
+        <axis xyz="0 1 0"/>
+        <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+
+    <gazebo reference="caster_link">
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
+        <surface>
+            <friction>
+                <ode>
+                    <mu>0.0</mu>
+                    <mu2>0.0</mu2>
+                </ode>
+            </friction>
+            <contact>
+                <ode>
+                    <kp>1000000.0</kp>
+                    <kd>100.0</kd>
+                    <min_depth>0.001</min_depth>
+                    <max_vel>1.0</max_vel>
+                </ode>
+            </contact>
+        </surface>
+        <kp>1000000.0</kp>
+        <kd>100.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>1.0</maxVel>
+    </gazebo>
+
+
+    <xacro:wheel side="left" x="0.15" y="0.325" z="0.1"/>
+    <xacro:wheel side="right" x="0.15" y="-0.325" z="0.1"/>
+
+
+    <link name="camera_link">
+        <visual name="camera_link_visual"> 
+         <origin xyz="0 0 0" rpy=" 0 0 0"/>
+         <geometry><box size="0.04 0.04 0.04"/></geometry>
+        </visual>
+
+        <collision name="camera_link_colision">
+         <origin xyz="0 0 0" rpy=" 0 0 0"/>
+         <geometry><box size="0.04 0.04 0.04"/></geometry>
+        </collision>
+
+        <inertial name="camera_link_inertial">
+         <origin xyz="0 0 0" rpy=" 0 0 0"/>
+            <mass value="0.1"/>
+            <inertia ixx="1e-3" ixy="0" ixz="0"
+                    iyy="1e-3" iyz="0"
+                    izz="1e-3"/>
+        </inertial>
+    </link>
+    <joint name="camera_joint" type="fixed">
+        <origin xyz="0.32 0 0.28" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="camera_link"/>
+    </joint>
+
+    <gazebo reference="camera_link">
+        <material>Gazebo/Black</material>
+
+        <sensor name="camera" type="camera">
+            <pose> 0 0 0 0 0 0 </pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <camera>
+                <camera_info_topic>/$(arg namespace)/camera/camera_info</camera_info_topic>
+                <!-- <horizontal_fov>1.089</horizontal_fov> -->
+                <horizontal_fov>2.094</horizontal_fov>
+                <image>
+                    <format>R8G8B8</format>
+                    <!-- <width>720</width>
+                    <height>640</height> -->
+                    <width>1920</width>
+                    <height>1080</height>
+                </image>
+                <clip>
+                    <near>0.03</near>
+                    <far>8.0</far>
+                </clip>
+            </camera>
+            <topic>/$(arg namespace)/camera/image_raw</topic>
+            <gz_frame_id>$(arg namespace)/camera_link</gz_frame_id>
+        </sensor>
+    </gazebo>
+
+
+    <link name="lidar_link">
+        <visual name='lidar_visual'>
+            <origin xyz="0 0 0" rpy=" 0 0 0"/>
+            <geometry>
+                <box size="0.05 0.05 0.05"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+        <inertial name="lidar_link_inertial">
+         <origin xyz="0 0 0" rpy=" 0 0 0"/>
+            <mass value="0.1"/>
+            <inertia ixx="1e-3" ixy="0" ixz="0"
+                    iyy="1e-3" iyz="0"
+                    izz="1e-3"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <box size="0.05 0.05 0.05"/>
+                </geometry>
+        </collision>
+    </link>
+    <joint name="lidar_joint" type="fixed">
+        <origin xyz="0.275 0 0.325" rpy="0 0 0"/>
+        <child link="lidar_link"/>
+        <parent link="base_link"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <gazebo reference="lidar_link">
+     <sensor name='gpu_lidar' type='gpu_lidar'>
+          <pose>0 0 0 0 0 0</pose>
+          <topic>/$(arg namespace)/scan</topic>
+          <gz_frame_id>$(arg namespace)/lidar_link</gz_frame_id>
+          <update_rate>10</update_rate>
+          <lidar>
+            <scan>
+              <horizontal>
+                <samples>640</samples>
+                <resolution>1</resolution>
+                <min_angle>-1.85</min_angle>
+                <max_angle>1.85</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>1</samples>
+                <resolution>1</resolution>
+                <min_angle>0.0</min_angle>
+                <max_angle>0.0</max_angle>
+              </vertical>
+            </scan>
+            <range>
+              <min>0.08</min>
+              <max>10.0</max>
+              <resolution>0.01</resolution>
+            </range>
+          </lidar>
+          <visualize>true</visualize>
+        </sensor>
+    </gazebo>
+
+</robot>

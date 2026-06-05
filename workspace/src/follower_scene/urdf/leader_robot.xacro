@@ -1,0 +1,171 @@
+<?xml version='1.0'?>
+<robot name="leader_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:arg name="namespace" default="leader"/>
+
+    <xacro:include filename="materials.xacro" />
+    <xacro:include filename="wheel.xacro" />
+    <xacro:include filename="inertial.xacro" />
+
+    <ros2_control name="GazeboSimSystem" type="system">
+        <hardware>
+            <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+        </hardware>
+        <joint name="wheel_left_joint">
+            <command_interface name="velocity"/>
+            <state_interface name="position"/>
+            <state_interface name="velocity">
+                <param name="initial_value">0.0</param>
+            </state_interface>
+        </joint>
+        <joint name="wheel_right_joint">
+            <command_interface name="velocity"/>
+            <state_interface name="position"/>
+            <state_interface name="velocity">
+                <param name="initial_value">0.0</param>
+            </state_interface>
+        </joint>
+        <joint name="caster_roll_joint">
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <joint name="caster_pitch_joint">
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+    </ros2_control>
+
+    <gazebo>
+        <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+            <parameters>$(find follower_scene)/config/diff_$(arg namespace).yaml</parameters>
+            <ros>
+                <namespace>$(arg namespace)</namespace>
+                <remapping>~/robot_description:=/$(arg namespace)/robot_description</remapping>
+                <remapping>tf:=/tf</remapping>
+                <remapping>tf_static:=/tf_static</remapping>
+            </ros>
+        </plugin>
+    </gazebo>
+
+    <link name='base_link'>
+        <origin xyz="0.0 0.0 0.1" rpy="0.0 0 0.0"/>
+        <visual name='base_visual'>
+            <origin xyz="0.0 0.0 0.2" rpy="0.0 0.0 0.0"/>
+            <geometry><box size="0.6 0.6 0.2"/></geometry>
+            <material name="white"/>
+        </visual>
+        <xacro:inertial_box mass="1" x="0.6" y="0.6" z="0.2">
+            <origin xyz="0 0 0.2" rpy="0 0 0"/>
+        </xacro:inertial_box>
+        <collision>
+            <origin xyz="0 0 0.2" rpy="0 0 0"/>
+            <geometry><box size="0.6 0.6 0.2"/></geometry>
+        </collision>
+    </link>
+
+    <link name="caster_link">
+        <visual name="caster_visual">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry><sphere radius="0.1"/></geometry>
+            <material name="white"/>
+        </visual>
+        <collision name="caster_collision">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry><sphere radius="0.1"/></geometry>
+        </collision>
+        <xacro:inertial_sphere mass="0.05" radius="0.1">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_sphere>
+    </link>
+
+    <link name="caster_roll_link">
+        <inertial>
+            <mass value="0.001"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+        </inertial>
+    </link>
+
+    <joint name="caster_roll_joint" type="continuous">
+        <origin xyz="-0.2 0 0.1" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="caster_roll_link"/>
+        <axis xyz="1 0 0"/>
+        <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+
+    <joint name="caster_pitch_joint" type="continuous">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="caster_roll_link"/>
+        <child link="caster_link"/>
+        <axis xyz="0 1 0"/>
+        <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+
+    <gazebo reference="caster_link">
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
+        <surface>
+            <friction>
+                <ode>
+                    <mu>0.0</mu>
+                    <mu2>0.0</mu2>
+                </ode>
+            </friction>
+            <contact>
+                <ode>
+                    <kp>1000000.0</kp>
+                    <kd>100.0</kd>
+                    <min_depth>0.001</min_depth>
+                    <max_vel>1.0</max_vel>
+                </ode>
+            </contact>
+        </surface>
+        <kp>1000000.0</kp>
+        <kd>100.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>1.0</maxVel>
+    </gazebo>
+
+    <xacro:wheel side="left" x="0.15" y="0.325" z="0.1"/>
+    <xacro:wheel side="right" x="0.15" y="-0.325" z="0.1"/>
+
+    <joint name="aruco_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="aruco_board_link"/>
+        <origin xyz="-0.3 0 0.2" rpy="0 0 3.14159"/> 
+    </joint>
+
+    <link name="aruco_board_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 1.5708 0"/>
+            <geometry>
+                <box size="0.1 0.1 0.01"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 1.5708 0"/>
+            <geometry>
+                <box size="0.1 0.1 0.01"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.05"/>
+            <origin xyz="0 0 0" rpy="0 1.5708 0"/>
+            <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+        </inertial>
+    </link>
+
+    <gazebo reference="aruco_board_link">
+        <visual>
+            <material>
+                <diffuse>1.0 1.0 1.0 1.0</diffuse>
+                <pbr>
+                    <metal>
+                        <albedo_map>file://$(find follower_scene)/models/aruco_3/textures/marker_42.png</albedo_map>
+                    </metal>
+                </pbr>
+            </material>
+        </visual>
+    </gazebo>
+
+</robot>

@@ -1,0 +1,53 @@
+<?xml version='1.0'?>
+<robot name="diff_drive" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<xacro:macro name="wheel" params="side x y z">
+    <link name='wheel_${side}'>
+        <visual name='wheel_${side}_visual'>
+            <origin xyz="0 0 0" rpy=" 0 0 0"/>
+            <geometry><cylinder length="0.05" radius="0.1"/></geometry>
+            <material name="black"/>
+        </visual>
+        <xacro:inertial_cylinder mass="0.1" length="0.05" radius="0.1">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry><cylinder radius="0.1" length="0.05"/></geometry>
+        </collision>
+    </link>
+    <joint name="wheel_${side}_joint" type="continuous">
+        <origin xyz="${x} ${y} ${z}" rpy="${-pi/2} 0 0"/>
+        <child link="wheel_${side}"/>
+        <axis xyz="0 0 1"/>
+        <parent link="base_link"/>
+        <limit effort="50" velocity="100"/>
+        <joint_properties damping="0" friction="0.01"/>
+    </joint>
+
+    <gazebo reference="wheel_${side}">
+        <mu1>3.0</mu1>
+        <mu2>3.0</mu2>
+        <surface>
+            <friction>
+                <ode>
+                    <mu>3.0</mu>
+                    <mu2>3.0</mu2>
+                </ode>
+            </friction>
+            <contact>
+                <ode>
+                    <kp>1000000.0</kp>
+                    <kd>100.0</kd>
+                    <min_depth>0.001</min_depth>
+                    <max_vel>1.0</max_vel>
+                </ode>
+            </contact>
+        </surface>
+        <kp>1000000.0</kp>
+        <kd>100.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>1.0</maxVel>
+    </gazebo>
+
+</xacro:macro>
+</robot>

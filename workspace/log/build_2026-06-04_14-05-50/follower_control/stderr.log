@@ -1,0 +1,5 @@
+  File "/home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_control/lib/python3.12/site-packages/follower_control/follower_control_node.py", line 63
+    self.aruco_pd_controller = PDController(kp=[0.8, 1.8, 0.0], kd=[0.01, 0.01 0.0])
+                                                                          ^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+

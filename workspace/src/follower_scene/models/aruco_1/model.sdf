@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<sdf version="1.8">
+  <model name="aruco_1">
+    <static>true</static>
+    <link name="link">
+      
+      <visual name="pole_visual">
+        <pose>0 0 0.25 0 0 0</pose> 
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.4 0.4 0.4 1</ambient>
+          <diffuse>0.4 0.4 0.4 1</diffuse>
+        </material>
+      </visual>
+      <collision name="pole_collision">
+        <pose>0 0 0.25 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>1</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="board_visual">
+        <pose>0.02 0 1 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.02 0.55 0.55</size> 
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+        </material>
+      </visual>
+      <collision name="board_collision">
+        <pose>0.02 0 1 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.02 0.55 0.55</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name="marker_visual">
+        <pose>0.031 0 1 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.001 0.5 0.5</size> 
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>textures/marker_3.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+
+    </link>
+  </model>
+</sdf>

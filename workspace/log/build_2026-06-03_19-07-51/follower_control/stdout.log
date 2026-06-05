@@ -1,0 +1,19 @@
+running develop
+running egg_info
+writing follower_control.egg-info/PKG-INFO
+writing dependency_links to follower_control.egg-info/dependency_links.txt
+writing entry points to follower_control.egg-info/entry_points.txt
+writing requirements to follower_control.egg-info/requires.txt
+writing top-level names to follower_control.egg-info/top_level.txt
+reading manifest file 'follower_control.egg-info/SOURCES.txt'
+writing manifest file 'follower_control.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_control/lib/python3.12/site-packages/follower-control.egg-link (link to .)
+Installing follower_control_node script to /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_control/lib/follower_control
+Installing leader_control_node script to /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_control/lib/follower_control
+
+Installed /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/build/follower_control
+running symlink_data
+symbolically linking /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/build/follower_control/resource/follower_control -> /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_control/share/ament_index/resource_index/packages
+symbolically linking /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/build/follower_control/package.xml -> /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_control/share/follower_control
+symbolically linking /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/build/follower_control/launch/run.launch.py -> /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_control/share/follower_control/launch

@@ -1,0 +1,59 @@
+[0.146s] Invoking command in '/home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/build/follower_scene': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/build/follower_scene -- -j16 -l16
+[0.187s] Invoked command in '/home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/build/follower_scene' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/build/follower_scene -- -j16 -l16
+[0.196s] Invoking command in '/home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/build/follower_scene': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/build/follower_scene
+[0.204s] -- Install configuration: ""
+[0.205s] -- Execute custom install script
+[0.205s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/launch/__pycache__/bringup.launch.cpython-312.pyc
+[0.205s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/launch/bringup.launch.py
+[0.205s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/config/diff_follower.yaml
+[0.205s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/config/diff_leader.yaml
+[0.205s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/config/ros_gz_bridge.yaml
+[0.206s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/config/rviz.rviz
+[0.206s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/urdf/follower_robot.xacro
+[0.206s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/urdf/inertial.xacro
+[0.206s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/urdf/leader_robot.xacro
+[0.206s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/urdf/materials.xacro
+[0.206s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/urdf/wheel.xacro
+[0.206s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/Palette.jpg
+[0.206s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/Palette.jpg.001.jpg
+[0.206s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/Palette.jpg.002.jpg
+[0.206s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/Palette.jpg.003.jpg
+[0.207s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/Palette.jpg.004.jpg
+[0.207s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/Palette.jpg.005.jpg
+[0.207s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/aruco_1/model.config
+[0.207s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/aruco_1/model.sdf
+[0.207s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/aruco_1/textures/marker_3.png
+[0.207s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/aruco_2/model.config
+[0.207s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/aruco_2/model.sdf
+[0.207s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/aruco_2/textures/marker_23.png
+[0.207s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/aruco_3/model.config
+[0.207s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/aruco_3/model.sdf
+[0.207s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/aruco_3/textures/marker_42.png
+[0.207s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/diff_drive_robot/urdf/diff_drive_robot.gazebo
+[0.207s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/diff_drive_robot/urdf/diff_drive_robot.xacro
+[0.207s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/diff_drive_robot/urdf/materials.xacro
+[0.208s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/finish.png
+[0.208s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/my_robot/urdf/macros.xacro
+[0.208s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/my_robot/urdf/materials.xacro
+[0.208s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/my_robot/urdf/my_robot.gazebo
+[0.208s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/my_robot/urdf/my_robot.xacro
+[0.208s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/pole.jpg
+[0.208s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/track_2024.dae
+[0.208s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/models/zabor.jpg
+[0.208s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/worlds/map.sdf
+[0.208s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/ament_index/resource_index/package_run_dependencies/follower_scene
+[0.208s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/ament_index/resource_index/parent_prefix_path/follower_scene
+[0.209s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/environment/ament_prefix_path.sh
+[0.209s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/environment/ament_prefix_path.dsv
+[0.209s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/environment/path.sh
+[0.209s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/environment/path.dsv
+[0.209s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/local_setup.bash
+[0.209s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/local_setup.sh
+[0.209s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/local_setup.zsh
+[0.209s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/local_setup.dsv
+[0.209s] -- Symlinking: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/package.dsv
+[0.218s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/ament_index/resource_index/packages/follower_scene
+[0.218s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/cmake/follower_sceneConfig.cmake
+[0.218s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/cmake/follower_sceneConfig-version.cmake
+[0.219s] -- Up-to-date symlink: /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_scene/share/follower_scene/package.xml
+[0.220s] Invoked command in '/home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/build/follower_scene' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/install/follower_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace/build/follower_scene
