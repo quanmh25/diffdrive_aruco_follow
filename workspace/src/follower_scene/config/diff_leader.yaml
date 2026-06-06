@@ -20,7 +20,6 @@ leader/diff_drive_controller:
     wheel_separation: 0.65
     wheel_radius: 0.1
     
-    # SỬA THÀNH FALSE ĐỂ TRÁNH LỖI NaN
     use_stamped_vel: true   # for using TwistStamped
     cmd_vel_timeout: 2.0
     publish_limited_velocity: true

@@ -3,7 +3,6 @@ from geometry_msgs.msg import TwistStamped
 from rclpy.duration import Duration
 from rclpy.node import Node
 
-import math
 
 
 class SimpleControl(Node):
@@ -63,7 +62,6 @@ def main(args=None):
         node.get_logger().info('Stopped')
         node.destroy_node()
         rclpy.shutdown()
-
 
 
 if __name__ == '__main__':

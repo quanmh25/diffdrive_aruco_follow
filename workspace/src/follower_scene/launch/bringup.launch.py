@@ -33,18 +33,17 @@ def generate_launch_description():
         }.items()
     )
 
-    # 4. Node Bridge dùng chung (Xem lưu ý bên dưới về file YAML)
     bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
         parameters=[{
+            'use_sim_time': True,
             'config_file': os.path.join(pkg_lab, 'config', 'ros_gz_bridge.yaml'),
             'qos_overrides./tf_static.publisher.durability': 'transient_local',
         }],
         output='screen'
     )
 
-    # 5. Rviz2
     rviz = Node(
        package='rviz2',
        executable='rviz2',
@@ -121,7 +120,7 @@ def generate_launch_description():
         Node(
             package='ros_gz_sim', 
             executable='create', 
-            arguments=[ '-name', 'leader_bot', '-topic', 'robot_description', '-x', '2.0', '-y', '0.0', '-z', '0.0'], 
+            arguments=[ '-name', 'leader_bot', '-topic', 'robot_description', '--x', '2.0', '--y', '0.0', '--z', '0.0'], 
             output='screen'
         ),
 
@@ -143,7 +142,7 @@ def generate_launch_description():
         ])
     ])
 
-    # Gắn trục odom của xe follower vào world (ở tọa độ 0, 0)
+    #set the follower robot's odom frame relative to the world at the origin (0, 0, 0)
     tf_world_to_follower = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
@@ -151,7 +150,7 @@ def generate_launch_description():
         output='screen'
     )
 
-    # Gắn trục odom của xe leader vào world (cách 2 mét)
+    # set the leader robot's odom frame relative to the world at the origin (2, 0, 0)
     tf_world_to_leader = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
@@ -166,7 +165,7 @@ def generate_launch_description():
         bridge,
         follower_group,
         leader_group,
-        tf_world_to_follower, # <-- Node 1
-        tf_world_to_leader,   # <-- Node 2       
+        tf_world_to_follower, 
+        tf_world_to_leader,     
         rviz,
     ])

@@ -1,5 +1,4 @@
 import math
-
 import cv2
 import numpy as np
 
@@ -20,15 +19,14 @@ class ArucoMarkerDetector:
         self.parameters.polygonalApproxAccuracyRate = 0.02
         self.parameters.minMarkerPerimeterRate = 0.01
         self.parameters.maxErroneousBitsInBorderRate = 0.08
-        self.detector = None
+
 
     def detect_markers(self, image):
-        corners, ids, _ = cv2.aruco.detectMarkers(
-            image, self.dictionary, parameters=self.parameters
-        )
+        corners, ids, _ = cv2.aruco.detectMarkers(image, self.dictionary, parameters=self.parameters)
         if ids is not None and len(ids) > 0:
             return corners, ids.flatten()
         return None, None
+
 
     def estimate_pose(self, corners, marker_size=0.1):
         rvecs, tvecs, _ = cv2.aruco.estimatePoseSingleMarkers(
@@ -36,16 +34,6 @@ class ArucoMarkerDetector:
         )
         return rvecs, tvecs
 
-    def get_marker_pose_2d(self, corners, marker_size=0.1):
-        rvecs, tvecs, _ = cv2.aruco.estimatePoseSingleMarkers(
-            corners, marker_size, self.camera_matrix, self.dist_coeffs
-        )
-        if rvecs is None:
-            return None
-
-        rvec = rvecs[0][0]
-        tvec = tvecs[0][0]
-        return self.pose_2d_from_vectors(rvec, tvec)
 
     @staticmethod
     def pose_2d_from_vectors(rvec, tvec):

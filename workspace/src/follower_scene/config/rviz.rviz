@@ -6,9 +6,10 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /Odometry1
         - /Odometry1/Shape1
         - /Image1/Topic1
+        - /Path1
+        - /Path2
       Splitter Ratio: 0.5
     Tree Height: 348
   - Class: rviz_common/Selection
@@ -83,6 +84,10 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        caster_roll_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         lidar_link:
           Alpha: 1
           Show Axes: false
@@ -121,6 +126,8 @@ Visualization Manager:
           Value: true
         follower/caster_link:
           Value: true
+        follower/caster_roll_link:
+          Value: true
         follower/lidar_link:
           Value: true
         follower/odom:
@@ -135,13 +142,13 @@ Visualization Manager:
           Value: true
         leader/caster_link:
           Value: true
+        leader/caster_roll_link:
+          Value: true
         leader/odom:
           Value: true
         leader/wheel_left:
           Value: true
         leader/wheel_right:
-          Value: true
-        path_memory_target:
           Value: true
         world:
           Value: true
@@ -155,9 +162,11 @@ Visualization Manager:
           follower/odom:
             follower/base_link:
               follower/camera_link:
-                {}
-              follower/caster_link:
-                {}
+                detected_aruco_42:
+                  {}
+              follower/caster_roll_link:
+                follower/caster_link:
+                  {}
               follower/lidar_link:
                 {}
               follower/wheel_left:
@@ -168,14 +177,13 @@ Visualization Manager:
             leader/base_link:
               leader/aruco_board_link:
                 {}
-              leader/caster_link:
-                {}
+              leader/caster_roll_link:
+                leader/caster_link:
+                  {}
               leader/wheel_left:
                 {}
               leader/wheel_right:
                 {}
-          path_memory_target:
-            {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -211,6 +219,10 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        caster_roll_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         wheel_left:
           Alpha: 1
           Show Axes: false
@@ -246,7 +258,7 @@ Visualization Manager:
           Scale: 1
           Value: true
         Value: true
-      Enabled: true
+      Enabled: false
       Keep: 100
       Name: Odometry
       Position Tolerance: 0.10000000149011612
@@ -267,7 +279,7 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /follower/diff_drive_controller/odom
-      Value: true
+      Value: false
     - Angle Tolerance: 0.10000000149011612
       Class: rviz_default_plugins/Odometry
       Covariance:
@@ -285,7 +297,7 @@ Visualization Manager:
           Scale: 1
           Value: true
         Value: true
-      Enabled: true
+      Enabled: false
       Keep: 100
       Name: Odometry
       Position Tolerance: 0.10000000149011612
@@ -306,7 +318,7 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /leader/diff_drive_controller/odom
-      Value: true
+      Value: false
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -355,6 +367,62 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /follower/camera/image_raw
       Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 25; 255; 0
+      Enabled: true
+      Head Diameter: 0.30000001192092896
+      Head Length: 0.20000000298023224
+      Length: 0.30000001192092896
+      Line Style: Lines
+      Line Width: 0.029999999329447746
+      Name: Path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 51; 209; 122
+      Pose Style: None
+      Radius: 0.029999999329447746
+      Shaft Diameter: 0.10000000149011612
+      Shaft Length: 0.10000000149011612
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /follower/visual_path
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 165; 29; 45
+      Enabled: true
+      Head Diameter: 0.30000001192092896
+      Head Length: 0.20000000298023224
+      Length: 0.30000001192092896
+      Line Style: Lines
+      Line Width: 0.029999999329447746
+      Name: Path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 53; 132; 228
+      Pose Style: None
+      Radius: 0.029999999329447746
+      Shaft Diameter: 0.10000000149011612
+      Shaft Length: 0.10000000149011612
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /leader/visual_path
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -401,7 +469,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 11.052090644836426
+      Distance: 22.874549865722656
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -416,10 +484,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.3753967881202698
+      Pitch: 0.4853966236114502
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.5503913760185242
+      Yaw: 0.5403912663459778
     Saved: ~
 Window Geometry:
   Displays:
@@ -439,5 +507,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1141
-  X: 121
-  Y: 81
+  X: 664
+  Y: 92

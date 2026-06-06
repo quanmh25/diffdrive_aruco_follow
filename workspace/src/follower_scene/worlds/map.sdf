@@ -57,18 +57,10 @@
             <static>true</static>
             <link name="box1_link">
                 <collision name="box1_collision">
-                    <geometry>
-                        <box>
-                            <size>1 1 1</size>
-                        </box>
-                    </geometry>
+                    <geometry><box><size>1 1 1</size></box></geometry>
                 </collision>
                 <visual name="box1_visual">
-                    <geometry>
-                        <box>
-                            <size>1 1 1</size>
-                        </box>
-                    </geometry>
+                    <geometry><box><size>1 1 1</size></box></geometry>
                 </visual>
             </link>
         </model>
@@ -79,18 +71,10 @@
             <static>true</static>
             <link name="wall1_link">
                 <collision name="wall1_collision">
-                    <geometry>
-                        <box>
-                            <size>3 0.1 1</size>
-                        </box>
-                    </geometry>
+                    <geometry><box><size>3 0.1 1</size></box></geometry>
                 </collision>
                 <visual name="wall1_visual">
-                    <geometry>
-                        <box>
-                            <size>3 0.1 1</size>
-                        </box>
-                    </geometry>
+                    <geometry><box><size>3 0.1 1</size></box></geometry>
                 </visual>
             </link>
         </model>

@@ -20,6 +20,10 @@ The system uses separate namespaces for the two robots:
 
 The main launch file starts Gazebo Sim, RViz2, the Gazebo-ROS bridge, both robots, both controller managers, the leader controller, the follower controller, and `rqt_image_view` for the processed camera stream.
 
+## Demo
+
+[![Leader-follower ArUco demo](docs/demo_thumbnail.png)](https://drive.google.com/file/d/1USltDKkg9fu8IxKernQhQIf-0ha4RkoM/view?usp=sharing)
+
 ## Repository Layout
 
 ```text
@@ -92,6 +96,7 @@ sudo apt install \
   ros-jazzy-rviz2 \
   ros-jazzy-rqt-image-view \
   ros-jazzy-tf2-tools \
+  ros-jazzy-nav-msgs \
   ros-jazzy-cv-bridge
 ```
 
@@ -224,10 +229,14 @@ max_linear_speed = 1.2
 max_angular_speed = 2.0
 use_path_memory = True
 path_spacing = 0.03
-pure_pursuit_lookahead = 0.35
+path_lookahead = 0.35
+history_spacing = 0.05
+use_kalman_filter = True
 ```
 
 When the marker is visible, the follower uses direct ArUco-based control. It also records the detected marker pose in the `world` frame as a path. When marker tracking is not fresh, the follower can continue using the stored path-memory controller.
+
+The path-memory lookahead is currently hard-coded as `0.35` m in `path_memory_control()`.
 
 The detected marker TF frame is:
 
@@ -272,6 +281,8 @@ Useful topics:
 /follower/camera/image_raw
 /follower/scan
 /camera/image_debug
+/follower/visual_path
+/leader/visual_path
 /leader/diff_drive_controller/cmd_vel
 /follower/diff_drive_controller/cmd_vel
 ```
@@ -458,7 +469,8 @@ max_linear_speed
 max_angular_speed
 slow_distance
 catchup_distance
-pure_pursuit_lookahead
+path_spacing
+history_spacing
 ```
 
 After changing the Python code, rebuild and source the workspace:

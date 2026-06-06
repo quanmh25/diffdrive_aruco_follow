@@ -36,8 +36,7 @@ class ArucoKalmanFilter:
         self.P_ = (I - K @ self.H_) @ self.P_
 
     def get_state(self):
-        """Trả về mảng 1D: [x, y, yaw]"""
-        return self.X_.flatten()
+        return self.X_.flatten()        # return array 1D [x, y, yaw]
 
     @classmethod
     def with_default_noise(cls, initial_pose):

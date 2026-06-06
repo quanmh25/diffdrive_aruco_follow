@@ -43,7 +43,7 @@ def generate_launch_description():
     return LaunchDescription([
         sim_launch,
         TimerAction(
-            period=8.0,
+            period=8.0, # delay 8s
             actions=[leader_control, follower_control],
         ),
         rqt_image_view_node,
