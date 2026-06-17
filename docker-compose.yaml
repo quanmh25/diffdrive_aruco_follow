@@ -1,0 +1,29 @@
+services:
+  ros:
+    build:
+      context: .
+      args:
+        ROS_DISTRO: ${ROS_DISTRO:-jazzy}
+        USERNAME: ${USER:-ros}
+        USER_UID: ${UID:-1000}
+        USER_GID: ${GID:-1000}
+    image: diffdrive-aruco-follow:${ROS_DISTRO:-jazzy}
+    container_name: diffdrive_aruco_follow
+    network_mode: host
+    ipc: host
+    stdin_open: true
+    tty: true
+    environment:
+      DISPLAY: ${DISPLAY}
+      QT_X11_NO_MITSHM: "1"
+      XDG_RUNTIME_DIR: /tmp/runtime-${USER:-ros}
+      ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-0}
+    volumes:
+      - .:${PWD:-/workspace/diffdrive_aruco_follow}
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    devices:
+      - /dev/dri:/dev/dri
+    group_add:
+      - video
+    working_dir: ${PWD:-/workspace/diffdrive_aruco_follow}/workspace
+    command: bash

@@ -31,8 +31,9 @@ Target environment:
 - ROS 2 Jazzy
 - Gazebo Sim
 - Python 3 with OpenCV and NumPy
+- Docker and Docker Compose, if using the container workflow
 
-Install the main dependencies:
+For a native ROS install, install the main dependencies:
 
 ```bash
 sudo apt update
@@ -55,17 +56,59 @@ sudo apt install \
   python3-numpy
 ```
 
-## Build
+## Run With Docker
+
+From the repository root:
+
+```bash
+cd /home/quanmh25/quanmh/diffdrive_aruco_follow
+docker compose build
+```
+
+Allow the container to open Gazebo/RViz windows on the host display:
+
+```bash
+xhost +local:docker
+```
+
+Start a shell inside the ROS container:
+
+```bash
+docker compose run --rm ros
+```
+
+Inside the container, the compose service starts in the workspace directory:
+
+```bash
+colcon build
+source install/setup.bash
+ros2 launch follower_control run.launch.py
+```
+
+The compose file mounts the repository into the container, uses host networking, exposes the X11 socket, and passes `/dev/dri` for Gazebo/RViz graphics.
+
+If the GUI does not open, check:
+
+```bash
+echo $DISPLAY
+ls /tmp/.X11-unix
+```
+
+## Run Natively
 
 From the workspace root:
 
 ```bash
+cd /home/quanmh25/quanmh/diffdrive_aruco_follow/workspace
 source /opt/ros/jazzy/setup.bash
 colcon build
 source install/setup.bash
+ros2 launch follower_control run.launch.py
 ```
 
-For a single package:
+Do not launch `follower_scene bringup.launch.py` separately while `follower_control run.launch.py` is running. The main launch already includes the scene launch, so running both can duplicate Gazebo, `/clock`, bridges, or controllers.
+
+For a single package rebuild:
 
 ```bash
 colcon build --packages-select follower_scene
@@ -74,16 +117,6 @@ source install/setup.bash
 ```
 
 Rebuild after changing launch files, config files, URDF/Xacro files, or Python entry points.
-
-## Run
-
-```bash
-source /opt/ros/jazzy/setup.bash
-source install/setup.bash
-ros2 launch follower_control run.launch.py
-```
-
-Do not launch `follower_scene bringup.launch.py` separately while `follower_control run.launch.py` is running. The main launch already includes the scene launch, so running both can duplicate Gazebo, `/clock`, bridges, or controllers.
 
 If the scene is already running, the nodes can also be started manually:
 

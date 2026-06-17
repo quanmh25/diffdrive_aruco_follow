@@ -1,0 +1,8 @@
+.git
+.agents
+.codex
+workspace/build
+workspace/install
+workspace/log
+**/__pycache__
+**/*.pyc
