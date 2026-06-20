@@ -1,6 +1,4 @@
 .git
-.agents
-.codex
 workspace/build
 workspace/install
 workspace/log
